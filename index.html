@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yield Earnings Calculator</title>
+    <link rel="stylesheet" href="src/css/index.css">
+    <link rel="shortcut icon" href="src/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <div class="calculator">
+        <h1>Yield Earnings Calculator</h1>
+        <p>
+            Calculate the yield earnings of an initial amount with a given annual interest rate over a time period.
+            The time period is given in years, months, and days.
+            Remember that this is just an approximation and the actual yield earnings may vary.
+        </p>
+
+        <div class="input-group">
+            <label for="initial">Initial Amount ($):</label>
+            <input type="number" id="initial" placeholder="Enter initial amount">
+        </div>
+        
+        <div class="input-group">
+            <label for="rate">Annual Interest Rate (%):</label>
+            <input type="number" id="rate" placeholder="Enter interest rate">
+        </div>
+        
+        <div class="input-group">
+            <label for="time">Time Period:</label>
+            <div class="input-group" id="time">
+                <input type="number" id="years" placeholder="Enter the years">
+                <input type="number" id="months" placeholder="Enter the months">
+                <input type="number" id="days" placeholder="Enter the days">
+            </div>
+        </div>
+
+        <div class="input-group-lateral">
+            <label for="dailyEarnings">Has daily earnings?</label>
+            <input type="checkbox" id="dailyEarnings" onclick="toggleDailyEarnings(event)">
+        </div>
+
+        <button onclick="ClickedButton()">Calculate</button>
+
+    </div>
+
+    <div class="calculator result hidden" id="result"></div>
+
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <div id="modalResult"></div>
+            <button onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <script src="src/js/index.js"></script>
+</body>
+</html>
