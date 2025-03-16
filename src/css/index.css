@@ -4,6 +4,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 90vw;
+    font-size: 5vh;
 }
 .calculator {
     background-color: #fff;
@@ -76,7 +77,7 @@ h1 {
 }
 .result {
     margin-top: 20px;
-    font-size: 1.2em;
+    font-weight: 900;
 }
 .modal {
     display: none;
@@ -103,7 +104,7 @@ h1 {
     width: 80%;
 }
 .hidden {
-    display: none;
+    display: none !important;
 }
 .close {
     color: #aaa;
