@@ -10,7 +10,8 @@ Yield Earnings Calculator is a simple tool to calculate the earnings from the us
 
 ## Usage
 
-Just open the [GitHub page](https://luna115-oncode.github.io/YieldEarningsCalculator/) of the project and use it.
+Just open the [Page](https://yield-earnings-calculator.vercel.app/) of the project and use it.
+Or visit the [GitHub Page](https://luna115-oncode.github.io/YieldEarningsCalculator/) of the project for testing the preview version.
 
 ## License
 
