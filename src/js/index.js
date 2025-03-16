@@ -1,77 +1,45 @@
-var dailyEarnings = false;
+import { getNumberValue, toggleModal, setModalText } from './tools.js';
+import { toggleDailyEarnings, toggleDiscountTAX, toggleRecurrentInvestment, calculateYield } from './methods.js';
 
-function calculateYield() {
-    const initial = parseFloat(document.getElementById('initial').value);
-    const rate = parseFloat(document.getElementById('rate').value);
-    const years = parseFloat(document.getElementById('years').value);
-    const months = parseFloat(document.getElementById('months').value);
-    const days = parseFloat(document.getElementById('days').value);
+document.getElementById('calculateButton').addEventListener('click', ClickedButton);
+document.getElementById('okModalButton').addEventListener('click', ClickedButton);
+document.getElementById('dailyEarnings').addEventListener('change', toggleSelector);
+document.getElementById('willYouAddMore').addEventListener('change', toggleSelector);
+document.getElementById('discountTAX').addEventListener('change', toggleSelector);
 
-    if (isNaN(initial) || isNaN(rate) || isNaN(days) && isNaN(months) && isNaN(years)) {
-        document.getElementById('result').innerText = 'Please enter valid values.';
-        return;
-    }
-
-    let time = 0;
-    if (!isNaN(years)) {
-        time += years;
-    }
-    if (!isNaN(months)) {
-        time += months / 12;
-    }
-    if (!isNaN(days)) {
-        time += days / 365;
-    }
-
-    if (dailyEarnings) {
-        calculateDailyEarnings(initial, rate, time);
-    }
-    else {
-        calculateYearlyEarnings(initial, rate, time);
+function ClickedButton(button) {
+    let id = button.target.id;
+    switch (id) {
+        case 'calculateButton':
+            let result = calculateYield();
+            setModalText(result, 'modalResult');
+            document.getElementById('result').classList.remove('hidden');
+            document.getElementById('result').innerHTML = result;
+            toggleModal('resultModal');
+            break;
+        case 'okModalButton':
+            toggleModal('resultModal');
+            break;
     }
 }
 
-function openModal() {
-    document.getElementById('modalResult').innerHTML = document.getElementById('result').innerHTML;
-    document.getElementById('resultModal').classList.add('show');
-}
-
-function closeModal() {
-    document.getElementById('resultModal').classList.remove('show');
-}
-
-function toggleDailyEarnings(event) {
-    dailyEarnings = event.target.checked;
-}
-
-function ClickedButton() {
-    document.getElementById('result').classList.remove('hidden');
-    calculateYield();
-    openModal();
-}
-
-function calculateYearlyEarnings(initial, rate, time) {
-    const yield = initial * (rate / 100) * time;
-    const total = initial + yield;
-    document.getElementById('result').innerHTML = `Yield Earnings: $${yield.toFixed(2)}
-    <br>Total final: $${total.toFixed(2)}`;
-}
-
-function calculateDailyEarnings(initial, rate, time) {
-    const timeInDays = time * 365;
-    const dailyRate = (rate / 100) / 365;
-    let yield = 0;
-    let total = initial;
-    let earningsPerDay = [];
-    for (let i = 0; i < timeInDays; i++) {
-        yield += total * dailyRate;
-        total += total * dailyRate;
-        earningsPerDay.push(total * dailyRate);
+function toggleSelector(selector) {
+    let id = selector.target.id;
+    let value = selector.target.checked;
+    
+    switch (id) {
+        case 'dailyEarnings':
+            toggleDailyEarnings(value);
+            break;
+        case 'willYouAddMore':
+            toggleRecurrentInvestment(value);
+            break;
+        case 'discountTAX':
+            toggleDiscountTAX(value);
+            break;
     }
-    const averageEarnings = earningsPerDay.reduce((acc, val) => acc + val, 0) / earningsPerDay.length;
-    console.log(earningsPerDay);
-    console.log(averageEarnings);
-    document.getElementById('result').innerHTML = `Yield Earnings: $${yield.toFixed(2)}
-    <br>Total final: $${total.toFixed(2)}<br>
-    Average earnings per day: $${averageEarnings.toFixed(2)}`;
+}
+
+isNaN = function(value) {
+    return typeof value !== "number" || Number.isNaN(value);
 }

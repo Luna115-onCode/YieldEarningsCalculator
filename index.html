@@ -27,7 +27,7 @@
         </div>
         
         <div class="input-group">
-            <label for="time">Time Period:</label>
+            <label>Time Period:</label>
             <div class="input-group" id="time">
                 <input type="number" id="years" placeholder="Enter the years">
                 <input type="number" id="months" placeholder="Enter the months">
@@ -36,11 +36,44 @@
         </div>
 
         <div class="input-group-lateral">
-            <label for="dailyEarnings">Is recurrent investment?</label>
-            <input type="checkbox" id="dailyEarnings" onclick="toggleDailyEarnings(event)">
+            <label for="dailyEarnings">Generates daily earnings?</label>
+            <input type="checkbox" id="dailyEarnings">
         </div>
 
-        <button onclick="ClickedButton()">Calculate</button>
+        <div class="input-group-lateral hidden" id="recurrentInvestmentActivator">
+            <label for="willYouAddMore">Will you invest recurrently?</label>
+            <input type="checkbox" id="willYouAddMore">
+        </div>
+
+        <div id="recurrentInvestmentGroup" class="hidden">
+            <div class="input-group" id="recurrentInvestmentTime">
+                <label>Recurrent investment frequency:</label>
+                <div class="input-group">
+                    <input type="number" id="investYears" placeholder="Enter the years">
+                    <input type="number" id="investMonths" placeholder="Enter the months">
+                    <input type="number" id="investDays" placeholder="Enter the days">
+                </div>
+            </div>
+
+            <div class="input-group" id="recurrentInvestmentQuantityGroup">
+                <label for="recurrentInvestmentQuantity">Quantity of money to invest recurrently ($):</label>
+                <input type="number" id="recurrentInvestmentQuantity" placeholder="Enter the money quantity">
+            </div>
+        </div>
+
+        <div class="input-group-lateral">
+            <label for="discountTAX">Discount the TAX?</label>
+            <input type="checkbox" id="discountTAX">
+        </div>
+
+        <div id="discountTAXGroup" class="hidden">
+            <div class="input-group" id="tax">
+                <label for="taxRate">TAX Rate (%):</label>
+                <input type="number" id="taxRate" placeholder="Enter the TAX rate">
+            </div>
+        </div>
+
+        <button id="calculateButton">Calculate</button>
 
     </div>
 
@@ -49,10 +82,10 @@
     <div id="resultModal" class="modal">
         <div class="modal-content">
             <div id="modalResult"></div>
-            <button onclick="closeModal()">OK</button>
+            <button id="okModalButton">OK</button>
         </div>
     </div>
 
-    <script src="src/js/index.js"></script>
+    <script src="src/js/index.js" type="module"></script>
 </body>
 </html>
