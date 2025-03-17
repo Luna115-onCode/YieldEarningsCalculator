@@ -115,6 +115,8 @@ export function calculateDailyEarnings(initial, rate, time) {
 export function toggleDailyEarnings(value) {
     dailyEarnings = value;
     document.getElementById('recurrentInvestmentActivator').classList.toggle('hidden');
+    document.getElementById('recurrentInvestmentGroup').classList.add('hidden');
+    document.getElementById('willYouAddMore').checked = false;
 }
 
 export function toggleRecurrentInvestment(value) {
